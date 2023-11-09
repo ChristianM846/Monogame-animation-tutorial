@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace Monogame_animation_tutorial
 {
@@ -12,6 +13,7 @@ namespace Monogame_animation_tutorial
         Rectangle greyTribbleRect, orangeTribbleRect, brownTribbleRect, creamTribbleRect;
         Vector2 tribbleGreySpeed, tribbleOrangeSpeed, tribbleBrownSpeed, tribbleCreamSpeed;
         Color backgroundColor;
+        Random generator = new Random();
         
 
         public Game1()
@@ -26,14 +28,14 @@ namespace Monogame_animation_tutorial
 
         protected override void Initialize()
         {
-            greyTribbleRect = new Rectangle(10, 10, 100, 100);
-            orangeTribbleRect = new Rectangle(100, 350, 100, 100);
-            brownTribbleRect = new Rectangle(600, 500, 100, 100);
-            creamTribbleRect = new Rectangle(300, 300, 100, 100);
-            tribbleGreySpeed = new Vector2(69, 69);
-            tribbleOrangeSpeed = new Vector2(69, 69);
-            tribbleBrownSpeed = new Vector2(69, 69);
-            tribbleCreamSpeed = new Vector2(69, 69);
+            greyTribbleRect = new Rectangle(generator.Next(0, 700), generator.Next(0, 400), 100, 100);
+            orangeTribbleRect = new Rectangle(generator.Next(0, 700), generator.Next(0, 400), 100, 100);
+            brownTribbleRect = new Rectangle(generator.Next(0, 700), generator.Next(0, 400), 100, 100);
+            creamTribbleRect = new Rectangle(generator.Next(0, 700), generator.Next(0, 400), 100, 100);
+            tribbleGreySpeed = new Vector2(4, 0);
+            tribbleOrangeSpeed = new Vector2(0, 5);
+            tribbleBrownSpeed = new Vector2(2, 3);
+            tribbleCreamSpeed = new Vector2(7, 2);
             base.Initialize();
         }
 
@@ -58,7 +60,7 @@ namespace Monogame_animation_tutorial
             if (greyTribbleRect.Right > graphics.PreferredBackBufferWidth  || greyTribbleRect.Left < 0)
             {
                 tribbleGreySpeed.X *= -1;
-                backgroundColor = Color.Red;
+                backgroundColor = Color.Gray;
             }
 
             if (greyTribbleRect.Top < 0 || greyTribbleRect.Bottom > graphics.PreferredBackBufferHeight)
@@ -73,7 +75,7 @@ namespace Monogame_animation_tutorial
             if (orangeTribbleRect.Right > graphics.PreferredBackBufferWidth || orangeTribbleRect.Left < 0)
             {
                 tribbleOrangeSpeed.X *= -1;
-                backgroundColor = Color.Blue;
+                backgroundColor = Color.Orange;
             }
 
             if (orangeTribbleRect.Top < 0 || orangeTribbleRect.Bottom > graphics.PreferredBackBufferHeight)
@@ -88,7 +90,7 @@ namespace Monogame_animation_tutorial
             if (brownTribbleRect.Right > graphics.PreferredBackBufferWidth || brownTribbleRect.Left < 0)
             {
                 tribbleBrownSpeed.X *= -1;
-                backgroundColor = Color.Yellow;
+                backgroundColor = Color.SaddleBrown;
             }
 
             if (brownTribbleRect.Top < 0 || brownTribbleRect.Bottom > graphics.PreferredBackBufferHeight)
@@ -103,7 +105,7 @@ namespace Monogame_animation_tutorial
             if (creamTribbleRect.Right > graphics.PreferredBackBufferWidth || creamTribbleRect.Left < 0)
             {
                 tribbleCreamSpeed.X *= -1;
-                backgroundColor = Color.Green;
+                backgroundColor = Color.PeachPuff;
 
             }
 
