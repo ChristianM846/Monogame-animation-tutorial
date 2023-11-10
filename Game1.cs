@@ -61,27 +61,17 @@ namespace Monogame_animation_tutorial
             {
                 tribbleGreySpeed.X *= -1;
                 backgroundColor = Color.Gray;
-            }
-
-            if (greyTribbleRect.Top < 0 || greyTribbleRect.Bottom > graphics.PreferredBackBufferHeight)
-            {
-                tribbleGreySpeed.Y *= -1;
-                backgroundColor = Color.Gray;
+                greyTribbleRect.Y = generator.Next(0, 500);
             }
 
             orangeTribbleRect.X += (int)tribbleOrangeSpeed.X;
             orangeTribbleRect.Y += (int)tribbleOrangeSpeed.Y;
 
-            if (orangeTribbleRect.Right > graphics.PreferredBackBufferWidth || orangeTribbleRect.Left < 0)
-            {
-                tribbleOrangeSpeed.X *= -1;
-                backgroundColor = Color.Orange;
-            }
-
             if (orangeTribbleRect.Top < 0 || orangeTribbleRect.Bottom > graphics.PreferredBackBufferHeight)
             {
                 tribbleOrangeSpeed.Y *= -1;
                 backgroundColor = Color.Orange;
+                orangeTribbleRect.X = generator.Next(0, 700);
             }
 
             brownTribbleRect.X += (int)tribbleBrownSpeed.X;
@@ -126,8 +116,6 @@ namespace Monogame_animation_tutorial
             spriteBatch.Draw(tribbleOrangeTexture, orangeTribbleRect, Color.White);
             spriteBatch.Draw(tribbleBrownTexture, brownTribbleRect, Color.White);
             spriteBatch.Draw(tribbleCreamTexture, creamTribbleRect, Color.White);
-
-
             spriteBatch.End();
             base.Draw(gameTime);
         }
