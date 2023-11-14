@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -14,7 +15,7 @@ namespace Monogame_animation_tutorial
         Vector2 tribbleGreySpeed, tribbleOrangeSpeed, tribbleBrownSpeed, tribbleCreamSpeed;
         Color backgroundColor;
         Random generator = new Random();
-        
+        SoundEffect tribblecoo;
 
         public Game1()
         {
@@ -46,6 +47,7 @@ namespace Monogame_animation_tutorial
             tribbleOrangeTexture = Content.Load<Texture2D>("tribbleOrange");
             tribbleBrownTexture = Content.Load<Texture2D>("tribbleBrown");
             tribbleCreamTexture = Content.Load<Texture2D>("tribbleCream");
+            tribblecoo = Content.Load<SoundEffect>("tribble_coo");
 
         }
 
@@ -59,6 +61,7 @@ namespace Monogame_animation_tutorial
 
             if (greyTribbleRect.Right > graphics.PreferredBackBufferWidth  || greyTribbleRect.Left < 0)
             {
+                tribblecoo.Play();
                 tribbleGreySpeed.X *= -1;
                 backgroundColor = Color.Gray;
                 greyTribbleRect.Y = generator.Next(0, 500);
@@ -69,8 +72,9 @@ namespace Monogame_animation_tutorial
 
             if (orangeTribbleRect.Top < 0 || orangeTribbleRect.Bottom > graphics.PreferredBackBufferHeight)
             {
+                tribblecoo.Play();
                 tribbleOrangeSpeed.Y *= -1;
-                backgroundColor = Color.Orange;
+                backgroundColor = Color.DarkOrange;
                 orangeTribbleRect.X = generator.Next(0, 700);
             }
 
@@ -81,12 +85,14 @@ namespace Monogame_animation_tutorial
             {
                 tribbleBrownSpeed.X *= -1;
                 backgroundColor = Color.SaddleBrown;
+                tribblecoo.Play();
             }
 
             if (brownTribbleRect.Top < 0 || brownTribbleRect.Bottom > graphics.PreferredBackBufferHeight)
             {
                 tribbleBrownSpeed.Y *= -1;
                 backgroundColor = Color.SaddleBrown;
+                tribblecoo.Play();
             }
 
             creamTribbleRect.X += (int)tribbleCreamSpeed.X;
@@ -96,6 +102,7 @@ namespace Monogame_animation_tutorial
             {
                 tribbleCreamSpeed.X *= -1;
                 backgroundColor = Color.PeachPuff;
+                tribblecoo.Play();
 
             }
 
@@ -103,6 +110,7 @@ namespace Monogame_animation_tutorial
             {
                 tribbleCreamSpeed.Y *= -1;
                 backgroundColor = Color.PeachPuff;
+                tribblecoo.Play();
             }
 
             base.Update(gameTime);
